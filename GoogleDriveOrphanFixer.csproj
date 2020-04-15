@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <StartupObject>GoogleDriveOrphanFixer.Program</StartupObject>
+    <ApplicationIcon>assets\icon_100.ico</ApplicationIcon>
+    <Authors>timonbldw</Authors>
+    <Description>Tool for restoring orphaned files from Google Drive</Description>
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
+    <SignAssembly>false</SignAssembly>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Copyright>MIT</Copyright>
+    <Product>Google Drive Orphan Fixer</Product>
+    <AssemblyOriginatorKeyFile>sign_key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyName>GoogleDriveOrphanFixer</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="assets\**" />
+    <EmbeddedResource Remove="assets\**" />
+    <None Remove="assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.45.0.1911" />
+    <PackageReference Include="Google.Apis.DriveActivity.v2" Version="1.45.0.1923" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="credentials.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="License.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="License.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
