@@ -16,9 +16,9 @@ There is an easy and quick way to tell: simply open Google Drive and search for 
 If any items show up, you either may want to delete them in case you don't need them anymore (since they are *not* in the trash, they still count towards your total used space), or you may wish to restore them to their original path - which is the purpose of this tool.
 
 ## Usage
-On the first start of the tool, your browser will open requiring your to login and allow the tool to access your Google Drive data as well its activity. The activity is required to determine from where a folder was moved into the *nirvana*.
+On the first start of the tool, your browser will open, requiring you to login and allow the tool to access your Google Drive data as well its activity. The activity is required to determine from where a folder was moved into the *nirvana* aka "unorganized"-state.
 Two modi are supported:
-1. Restore folder structure from files already moved from the *nirvana* into one, large folder
+1. Restore folder structure from files already moved from the *nirvana* into a single, large folder
 	* This is the case when you have already manually moved some, or all files into another folder in your Drive
 	* See the next paragraph for further information
 2. Restore the folder structure directly
