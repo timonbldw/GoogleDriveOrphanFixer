@@ -1,11 +1,11 @@
-﻿using System;
-using Google.Apis.Auth.OAuth2;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Drive.v3;
 using Google.Apis.DriveActivity.v2;
 using Google.Apis.Util.Store;
+using System;
 using System.IO;
-using System.Threading;
-using Google.Apis.Drive.v3;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 
 namespace GoogleDriveOrphanFixer
@@ -18,6 +18,7 @@ namespace GoogleDriveOrphanFixer
         public string parent_id;
         public string parent_title;
         public bool isFile;
+
 
         override public string ToString()
         {
@@ -75,12 +76,14 @@ namespace GoogleDriveOrphanFixer
                         new FileDataStore(credPath, true)).Result;
                     //Console.WriteLine("Credential file saved to: " + credPath);
                 }
-            } catch (FileNotFoundException e)
+            }
+            catch (FileNotFoundException e)
             {
                 try
                 {
                     ShellExecute(0, "open", "https://console.developers.google.com/henhouse/?pb=%5B%22hh-0%22,%22drive%22,null,%5B%5D,%22https:%2F%2Fdevelopers.google.com%22,null,%5B%5D,null,%22Enable%20the%20Drive%20API%22,1,null,%5B%5D,false,false,null,null,null,null,false,null,false,false,null,null,null,%22DESKTOP%22,null,%22Quickstart%22,true,%22Quickstart%22,null,null,false%5D", "", "", 5);
-                } catch { } // if not supported on linux
+                }
+                catch { } // if not supported on linux
                 Console.WriteLine("ERROR: No credentials.json file found. {0}\n\n" +
                     "If the credentials.json file is missing or invalid you can create your own in the opened window. " +
                     "Simply click on the button in the bottom right of the opened browser window and download your credentials file.", e.Message);

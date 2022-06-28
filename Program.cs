@@ -33,7 +33,7 @@ namespace GoogleDriveOrphanFixer
                         fileIDs = fileHelper.GetFilesFromFolderById(restoreFolderId); // finds all files that are in the given folder
                         break;
                     case Selection.Orphan:
-                        fileIDs = fileHelper.ScanForOrphans(); // finds all orphans
+                        fileIDs = fileHelper.ScanRootDirectory(); // finds all orphans
                         break;
                 }
 
@@ -52,26 +52,25 @@ namespace GoogleDriveOrphanFixer
             Console.ReadKey();
         }
 
-            private static Selection Startup()
+        private static Selection Startup()
         {
             try
             {
                 Console.SetWindowSize(120, 30);
-            } catch { } // if not supported on linux
+            }
+            catch { } // if not supported on linux
             Console.WriteLine("========================================================================================================================");
-            Console.WriteLine(_Center("Welcome to the Google Drive Orphan Fixer!"));
-            Console.WriteLine(_Center("This tool will try to find all orphaned files in your Google Drive and fully restore their original folder structure."));
+            Console.WriteLine(_Center("Welcome to the Google Drive Orphan Fixer 2.0!"));
+            Console.WriteLine(_Center("This tool will try restore the original folder structure of shared files that were removed by others and now appear in the root folder."));
             Console.WriteLine("\n");
             Console.WriteLine(_Center("Please make sure you have your credentials.json file saved in the same folder as this executable file!"));
             Console.WriteLine("\n");
             Console.WriteLine(_Center("Icon modified from Freepik from www.flaticon.com"));
             Console.WriteLine("========================================================================================================================\n");
 
-            Console.WriteLine("Please choose what applies to you:\n" +
-                "1. I have searched for \"is:unorganized\" and moved all files manually into a folder but want to restore their original\n" +
-                "   folder structure\n" +
-                "2. Files are still unorganized / orphans\n" +
-                "3. Exit\n");
+            Console.WriteLine("Please select:\n" +
+                "1. There are files in my root folder that were shared and are supposed to be somewhere else\n" +
+                "2. Exit\n");
 
             ConsoleKeyInfo key;
             do
@@ -79,19 +78,19 @@ namespace GoogleDriveOrphanFixer
                 _ClearLine();
                 Console.Write("Select: ");
                 key = Console.ReadKey();
-            } while (key.KeyChar < '1' || key.KeyChar > '3');
+            } while (key.KeyChar < '1' || key.KeyChar > '2');
 
             switch (key.KeyChar)
             {
-                case '1':
-                    Console.WriteLine("\n\nIn order to identify your files, the id of the folder where you moved the files is required.\n" +
-                        "Hint: You can obtain the folder id by opening the folder in your browser and looking at the link.\n" +
-                        "Your link will have the following format: https://drive.google.com/drive/folders/{folder-id}\n\n");
-                        Console.Write("Please enter your folder id: ");
+                //case '1':
+                //    Console.WriteLine("\n\nIn order to identify your files, the id of the folder where you moved the files is required.\n" +
+                //        "Hint: You can obtain the folder id by opening the folder in your browser and looking at the link.\n" +
+                //        "Your link will have the following format: https://drive.google.com/drive/folders/{folder-id}\n\n");
+                //        Console.Write("Please enter your folder id: ");
 
-                    restoreFolderId = Console.ReadLine();
-                    return Selection.RestoreFolder;
-                case '2':
+                //    restoreFolderId = Console.ReadLine();
+                //    return Selection.RestoreFolder;
+                case '1':
                     return Selection.Orphan;
                 default:
                     Environment.Exit(0);
